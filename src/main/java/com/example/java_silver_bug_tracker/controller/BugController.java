@@ -18,7 +18,8 @@ public class BugController {
 
     @GetMapping("/bugs")
     public String listBug(Model model ) {
-        model.addAttribute("bug", bugService.findAll());
+        /* <tr th:each="bug : ${bugs}">　のbugsにつながっている */
+        model.addAttribute("bugs", bugService.findAll());
         return "bug-list";
     }
 
@@ -33,5 +34,4 @@ public class BugController {
         bugService.save(bug);
         return "redirect:/bugs";
     }
-
 }
