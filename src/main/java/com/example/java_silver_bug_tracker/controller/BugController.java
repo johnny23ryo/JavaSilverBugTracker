@@ -1,4 +1,22 @@
 package com.example.java_silver_bug_tracker.controller;
+import com.example.java_silver_bug_tracker.model.Bug;
+import com.example.java_silver_bug_tracker.repository.BugRepository;
+import com.example.java_silver_bug_tracker.service.BugService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
+@Controller
 public class BugController {
+    private final BugService bugService;
+
+    public BugController(BugService bugService) {
+        this.bugService = bugService;
+    }
+
+    @GetMapping("/bugs")
+    public String listBug(Model model ) {
+        model.addAttribute("bug", bugService.findAll());
+        return "bug-list";
+    }
 }
