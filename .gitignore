@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+## DS_Storeファイル削除
+.DS_Store
