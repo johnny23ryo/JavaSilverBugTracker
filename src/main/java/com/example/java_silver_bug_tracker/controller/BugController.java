@@ -19,4 +19,10 @@ public class BugController {
         model.addAttribute("bug", bugService.findAll());
         return "bug-list";
     }
+
+    @GetMapping("bugs/new")
+    public String showCreateForm(Model model) {
+        model.addAttribute("bugForm", new Bug());
+        return "bug-form";
+    }
 }
