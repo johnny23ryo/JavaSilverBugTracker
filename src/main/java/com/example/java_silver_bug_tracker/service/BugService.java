@@ -15,4 +15,8 @@ public class BugService {
     public List<Bug> findAll() {
         return bugRepository.findAll();
     }
+
+    public void save(Bug bug) {
+        bugRepository.save(bug);
+    }
 }

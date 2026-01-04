@@ -5,6 +5,8 @@ import com.example.java_silver_bug_tracker.service.BugService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class BugController {
@@ -16,7 +18,8 @@ public class BugController {
 
     @GetMapping("/bugs")
     public String listBug(Model model ) {
-        model.addAttribute("bug", bugService.findAll());
+        /* <tr th:each="bug : ${bugs}">　のbugsにつながっている */
+        model.addAttribute("bugs", bugService.findAll());
         return "bug-list";
     }
 
@@ -24,5 +27,11 @@ public class BugController {
     public String showCreateForm(Model model) {
         model.addAttribute("bugForm", new Bug());
         return "bug-form";
+    }
+
+    @PostMapping("bugs/new")
+    public String NewBug(@ModelAttribute Bug bug) {
+        bugService.save(bug);
+        return "redirect:/bugs";
     }
 }
