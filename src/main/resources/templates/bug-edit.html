@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>バグ編集</title>
+    <!-- CSSは省略（bug-form.htmlと同じでOK） -->
+</head>
+<body>
+
+<h1>バグ情報の編集</h1>
+
+<!-- 修正1: actionの宛先を "/bugs/update" に変更 -->
+<form th:action="@{/bugs/update}" th:object="${bugForm}" method="post">
+
+    <!-- ★★★ 修正2: 重要！ IDを隠し項目として持たせる ★★★ -->
+    <!-- これがないと、更新ではなく「新規作成」になってしまいます -->
+    <input type="hidden" th:field="*{id}">
+
+    <!-- 以下は新規登録画面と同じでOK -->
+    <div>
+        <label>タイトル:</label>
+        <input type="text" th:field="*{title}" required>
+    </div>
+
+    <div>
+        <label>重要度:</label>
+        <select th:field="*{priority}">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+    </div>
+
+    <!-- もしステータスを復活させるならここに記述 -->
+
+    <button type="submit">更新する</button>
+</form>
+
+<a href="/bugs">一覧に戻る</a>
+
+</body>
+</html>
