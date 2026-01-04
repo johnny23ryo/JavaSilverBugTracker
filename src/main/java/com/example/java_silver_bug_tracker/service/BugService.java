@@ -19,4 +19,9 @@ public class BugService {
     public void save(Bug bug) {
         bugRepository.save(bug);
     }
+
+    // 追加: IDで検索するメソッド
+    public Bug findById(Long id) {
+        return bugRepository.findById(id).orElse(null);
+    }
 }
